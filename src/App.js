@@ -1,25 +1,27 @@
 import logo from './logo.svg';
-import './App.css';
+import 'App.css';
+import { useEffect, useState } from 'react';
+import { VideoList } from 'components/video_list/video_list';
 
 function App() {
+  const [videos, setVideos] = useState([]);
+
+  useEffect(()=>{
+    const requestOptions = {
+      method: 'GET',
+      redirect: 'follow'
+    };
+    
+    fetch("https://youtube.googleapis.com/youtube/v3/videos?key=AIzaSyCtcejghzwTBfNUQgvRNplhsmRCIWjR1x0&part=snippet&chart=mostPopular&maxResults=5&key=AIzaSyCtcejghzwTBfNUQgvRNplhsmRCIWjR1x0", requestOptions)
+      .then(response => response.json())
+      .then(result => {console.log(result.items); return setVideos(result.items);})
+      .catch(error => console.log('error', error));
+  }, []); // 마운트가 되었을 때만 호출 ( 빈배열 추가 )
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    // <h1>1</h1>
+    <VideoList videos={videos}/>
+  ); 
 }
 
 export default App;
