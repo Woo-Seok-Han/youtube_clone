@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import 'App.css';
 import { useEffect, useState } from 'react';
 import { VideoList } from 'components/video_list/video_list';
+import { Navbar } from 'components/navbar/navbar';
 
 function App() {
   const [videos, setVideos] = useState([]);
@@ -19,8 +20,10 @@ function App() {
   }, []); // 마운트가 되었을 때만 호출 ( 빈배열 추가 )
 
   return (
-    // <h1>1</h1>
-    <VideoList videos={videos}/>
+    <>
+      <Navbar/>
+      <VideoList videos={videos}/>
+    </>
   ); 
 }
 
