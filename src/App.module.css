@@ -1,0 +1,26 @@
+.app {
+  max-width: 80rem;
+}
+
+.content {
+  border: 3px solid green;
+  padding: 10px;
+}
+.detail {
+  border: 3px solid blue;
+  padding: 10px;
+}
+.list {
+  border: 3px solid purple;
+  padding: 10px;
+}
+
+.content {
+  display: flex;
+}
+.detail {
+  flex: 1 1 70%;
+}
+.list {
+  flex: 1 1 30%;
+}
